@@ -9,19 +9,20 @@ function dummyDataGenerator (digits, start, end) {
     const month = date.slice(5, 7);
     const day = date.slice(8, 10);
     const hours = date.slice(11, 19);
+    let number=""
+    for(i=0;i<digits;i++){
+        number+= Math.floor(Math.random()*10)
+    }
     const output = {
-        id: Math.random().toFixed(digits).slice(2),
+        id: number, // id: Math.random().toFixed(digits).slice(2),
         time: `${day}.${month}.${year} ${hours} UTC`,
     };
     return output;
 }
 
-// Time 10 million times - about 16 seconds
-/* console.log(new Date()); 
-for (let i = 0; i < 10000000; i++) {
-    dummyDataGenerator(11, '2010-01-01T00:00:00', '2021-06-01T12:12:00');
+console.time("test");
+const array=[]
+for(y=0;y<10000000;y++){
+    array.push(dummyDataGenerator(8,"December 17, 1995 03:24:00","June 28, 2017 07:55:00"))
 }
-console.log(new Date()); */
-
-
-
+console.timeEnd("test");
